@@ -1,0 +1,19 @@
+services:
+  db:
+    image: mysql:8.2
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # Port running inside container>
+      - '3307:3306'
+    expose:
+      # Opens port 3307 on the container
+      - '3307'
+    volumes:
+      - db-volume:/var/lib/mysql
+volumes:
+  db-volume:
