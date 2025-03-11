@@ -9,6 +9,7 @@
            com.mysql/mysql-connector-j            {:mvn/version "9.1.0"}
            com.layerware/hugsql-core              {:mvn/version "0.5.3"}
            com.layerware/hugsql-adapter-next-jdbc {:mvn/version "0.5.3"}
-           ring/ring-jetty-adapter                {:mvn/version "1.9.6"}}
+           ring/ring-jetty-adapter                {:mvn/version "1.9.6"}
+           clj-http/clj-http                      {:mvn/version "3.12.3"}}
  :aliases {:dev {:extra-deps {javax.servlet/servlet-api {:mvn/version "2.5"}
                               ring/ring-mock            {:mvn/version "0.3.2"}}}}}

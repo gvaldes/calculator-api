@@ -1,4 +1,4 @@
--- :name operation-by-type :?
+-- :name operation-by-type :? :1
 -- :doc Get an operation by type
 SELECT id,
        type,

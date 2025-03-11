@@ -3,17 +3,19 @@
             [ring.util.http-response :refer :all]
             [schema.core :as s]))
 
-; delete
-(s/defschema Pizza
-  {:name s/Str})
-
-(s/defschema Operation
+(s/defschema operation-request
   {:type  s/Str
-   :num_1 s/Num
-   :num_2 s/Num
-   :userId s/Num})
+   :num-1 s/Num
+   :num-2 s/Num
+   :user-id s/Num})
 
-(s/defschema Result
-  {:result s/Num
+(s/defschema string-request
+  {:type  s/Str
+   :user-id s/Num})
+
+(s/defschema result
+  {:result s/Str
+   :cost s/Num
    :balance s/Num
-   :userName s/Str})
+   :user-id s/Num
+   :user-name s/Str})

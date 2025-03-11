@@ -1,7 +1,4 @@
--- :name get-users :? :*
-SELECT * FROM User;
-
--- :name get-user-by-id :? :1
+-- :name user-by-id :? :1
 -- :doc Get a user by id
 SELECT id,
        userName,
@@ -9,7 +6,7 @@ SELECT id,
 FROM User
 WHERE id = :id;
 
--- :name update-balance-user :?
+-- :name update-new-user-balance! :! :n
 -- :doc Update a user balance
 UPDATE User
 SET balance = :balance

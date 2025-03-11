@@ -1,5 +1,6 @@
 (ns calculator-api.api.handler
   (:require [calculator-api.controllers.operation :as ops]
+            [calculator-api.controllers.random-string :as random]
             [calculator-api.schemas.schemas :as sch]
             [compojure.api.sweet :refer :all]
             [ring.adapter.jetty :as jetty]
@@ -29,15 +30,15 @@
 
       (POST "/operation" []
         ;:return sch/Operation
-        :body [operation sch/Operation]
+        :body [operation sch/operation-request]
         :summary "Perform an arithmetic operation"
         (ok (ops/performOperation operation)))
 
-      (POST "/echo" []
-        :return sch/Pizza
-        :body [pizza sch/Pizza]
-        :summary "Echoes a Pizza"
-        (ok pizza)))))
+      (POST "/random-string" []
+        :return sch/result
+        :body [request sch/string-request]
+        :summary "Get a random String"
+        (ok (random/get-random-string (:user-id request)))))))
 
 (defn -main
   [& args]

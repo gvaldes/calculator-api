@@ -6,6 +6,10 @@
 (hugsql/def-db-fns "sql/operation.sql")
 
 (defn get-operation-by-type [type]
-  (operation-by-type config/db-spec-hugsql {:type type}))
-
-
+  (let [operation (operation-by-type config/db-spec-hugsql {:type type})]
+    (if operation
+      operation
+      (throw (ex-info (str "Operation type not found with type: " type) {:type type}))
+      )
+    )
+  )

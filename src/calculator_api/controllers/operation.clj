@@ -1,8 +1,10 @@
 (ns calculator-api.controllers.operation
-  (:require [calculator-api.entities.operation_jdbc :as op_jdbc]
-            [calculator-api.entities.user :as us]
-            [calculator-api.entities.operation :as op]
-            [calculator-api.entities.user_jdbc :as us_jdbc]))
+  (:require
+    [calculator-api.controllers.user :as us]
+    [calculator-api.entities.operation :as ent-op]
+    [calculator-api.entities.record :as ent-rec]
+    [calculator-api.entities.user :as ent-us]
+    [calculator-api.utils.utils :as utils]))
 
 (defn sum [num_1 num_2]
   (+ num_1 num_2))
@@ -16,18 +18,27 @@
 (defn division [num_1 num_2]
   (/ num_1 num_2))
 
-(defn performOperation [{:keys [num_1 num_2 userId type]}]
-  (println "JDBC Type test = " (op_jdbc/get-operation-by-type type))
-  (println "HugSQL Type test = " (op/get-operation-by-type type))
+(defn calculate-result [ type num-1 num-2]
+  (case type
+    "sum" (sum num-1 num-2)
+    "subtraction" (subtraction num-1 num-2)
+    "multiplication" (multiplication num-1 num-2)
+    "division" (division num-1 num-2)
+    "Operation type not found"
+    )
+  )
 
-  (println "JDBC User test = " (us_jdbc/get-user-by-id userId))
-  (println "HugSQL User test = " (us/get-user-by-id-hugh userId))
+(defn performOperation [{:keys [num-1 num-2 user-id type]}]
+  (us/discount-operation-cost user-id type)
 
-  (str (case type
-         "sum" (sum num_1 num_2)
-         "subtraction" (subtraction num_1 num_2)
-         "multiplication" (multiplication num_1 num_2)
-         "division" (division num_1 num_2)
-         "Operation type not found"
-         ))
+  (let [typeMap (ent-op/get-operation-by-type type)
+        {:keys [id cost]} typeMap
+        result (str (calculate-result type num-1 num-2))
+        user (ent-us/get-user-by-id user-id)
+        user-name (:username user)
+        before-balance (:balance user)]
+    (ent-rec/create-record user-id id result (str "[" num-1 " " num-2 "]") cost)
+    (utils/build-response result cost (- before-balance cost) user-id user-name)
+
+    )
   )
