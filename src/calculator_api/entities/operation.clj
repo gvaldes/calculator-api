@@ -9,7 +9,4 @@
   (let [operation (operation-by-type config/db-spec-hugsql {:type type})]
     (if operation
       operation
-      (throw (ex-info (str "Operation type not found with type: " type) {:type type}))
-      )
-    )
-  )
+      (throw (ex-info (str "Operation type not found with type: " type) {:type type})))))

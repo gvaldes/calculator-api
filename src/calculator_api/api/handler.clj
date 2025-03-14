@@ -29,7 +29,7 @@
         (ok {:result (+ x y)}))
 
       (POST "/operation" []
-        ;:return sch/Operation
+        :return sch/result
         :body [operation sch/operation-request]
         :summary "Perform an arithmetic operation"
         (ok (ops/performOperation operation)))

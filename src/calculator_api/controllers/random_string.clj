@@ -17,6 +17,5 @@
             random-string (:body response)]
         (con-us/discount-operation-cost user-id "random_string")
         (ent-rec/create-record user-id id (:body response) "" cost)
-        (utils/build-response random-string cost (- before-balance cost) user-id user-name)
-        )
+        (utils/build-response random-string cost (- before-balance cost) user-id user-name))
       (throw (ex-info "Failed to get random string" {:status (:status response)})))))

@@ -18,15 +18,13 @@
 (defn division [num_1 num_2]
   (/ num_1 num_2))
 
-(defn calculate-result [ type num-1 num-2]
+(defn calculate-result [type num-1 num-2]
   (case type
     "sum" (sum num-1 num-2)
     "subtraction" (subtraction num-1 num-2)
     "multiplication" (multiplication num-1 num-2)
     "division" (division num-1 num-2)
-    "Operation type not found"
-    )
-  )
+    (throw (ex-info "Invalid operation" {:type type}))))
 
 (defn performOperation [{:keys [num-1 num-2 user-id type]}]
   (us/discount-operation-cost user-id type)
@@ -38,7 +36,4 @@
         user-name (:username user)
         before-balance (:balance user)]
     (ent-rec/create-record user-id id result (str "[" num-1 " " num-2 "]") cost)
-    (utils/build-response result cost (- before-balance cost) user-id user-name)
-
-    )
-  )
+    (utils/build-response result cost (- before-balance cost) user-id user-name)))

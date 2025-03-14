@@ -12,5 +12,4 @@
   (let [user (user-by-id config/db-spec-hugsql {:id id})]
     (if user
       user
-      (throw (ex-info (str "User not found with ID: " id) {:user-id id}))
-      )))
+      (throw (ex-info (str "User not found with ID: " id) {:user-id id})))))
