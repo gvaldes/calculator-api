@@ -11,8 +11,8 @@
       (is (= "Not enough balance" (ex-message e))))))
 
 (deftest discount-operation-cost-not-enough-balance
-  (with-redefs [ent-us/get-user-by-id (fn [& args] {:balance 5})
-                ent-op/get-operation-by-type (fn [& args] {:cost 10})]
+  (with-redefs [ent-us/get-user-by-id (constantly {:balance 5})
+                ent-op/get-operation-by-type (constantly {:cost 10})]
     (try
       (us/discount-operation-cost 1 1)
       (catch Exception e

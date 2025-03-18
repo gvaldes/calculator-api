@@ -31,7 +31,7 @@
 
   (let [typeMap (ent-op/get-operation-by-type type)
         {:keys [id cost]} typeMap
-        result (str (calculate-result type num-1 num-2))
+        result (calculate-result type num-1 num-2)
         user (ent-us/get-user-by-id user-id)
         user-name (:username user)
         before-balance (:balance user)]

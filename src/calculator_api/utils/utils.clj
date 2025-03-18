@@ -5,5 +5,4 @@
    :cost      cost
    :balance   balance
    :user-id   user-id
-   :user-name user-name}
-  )
+   :user-name user-name})
