@@ -15,8 +15,9 @@ The calculator-api allows users to perform operations like addition, subtraction
 
 1.  **Start the MySQL Database:** Create the database schema running the following cmd.
     ```bash
-    docker compose
+    docker compose up
     ```
+    TODO - Add categories scripts.
 2.  **Run the API:** To start a web server for the application, run:
 
     ```bash
@@ -35,7 +36,7 @@ The calculator-api allows users to perform operations like addition, subtraction
 
 * **Start the MySQL Database:** Create the database schema running the following cmd.
     ```bash
-    docker compose
+    docker compose up
     ```
 
 ## Development
