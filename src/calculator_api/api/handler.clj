@@ -18,15 +18,9 @@
     (context "/calculator" []
       :tags ["calculator"]
 
-      (GET "/custom" []
-        :summary "Return sample custom text new"
-        (ok {:message "Custom GET endpoint updated"}))
-
-      (GET "/plus" []
-        :return {:result Long}
-        :query-params [x :- Long, y :- Long]
-        :summary "Adds two numbers together"
-        (ok {:result (+ x y)}))
+      (GET "/health" []
+        :summary "Return sample text"
+        (ok {:message "Calculator API running"}))
 
       (POST "/operation" []
         :return sch/result
