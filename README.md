@@ -45,6 +45,12 @@ The calculator-api allows users to perform operations like addition, subtraction
 * Use `(require 'calculator-api.api.handler :reload)` to reload namespaces.
 * Add tests using `clojure.test`.
 
+## Deploy
+```bash
+    clj -T:build clean
+    clj -T:build jar
+```
+
 ## Dependencies
 
 * compojure

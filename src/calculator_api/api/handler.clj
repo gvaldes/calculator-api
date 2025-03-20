@@ -4,7 +4,8 @@
             [calculator-api.schemas.schemas :as sch]
             [compojure.api.sweet :refer :all]
             [ring.adapter.jetty :as jetty]
-            [ring.util.http-response :refer :all]))
+            [ring.util.http-response :refer :all])
+  (:gen-class))
 
 (def app
   (api

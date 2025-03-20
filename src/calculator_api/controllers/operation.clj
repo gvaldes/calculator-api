@@ -36,4 +36,4 @@
         user-name (:username user)
         before-balance (:balance user)]
     (ent-rec/create-record user-id id result (str "[" num-1 " " num-2 "]") cost)
-    (utils/build-response result cost (- before-balance cost) user-id user-name)))
+    (utils/build-response (str result) cost (- before-balance cost) user-id user-name)))
